@@ -30,6 +30,19 @@ android {
         targetSdkVersion safeExtGet('targetSdkVersion', 28)
         versionCode 1
         versionName "1.0"
+	ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+    }
+}
+
+repositories {
+    mavenLocal()
+    google()
+    jcenter()
+    maven {
+        url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
     }
 }
 
