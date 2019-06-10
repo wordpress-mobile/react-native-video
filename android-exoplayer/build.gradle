@@ -34,7 +34,15 @@ android {
 }
 
 dependencies {
-    compileOnly "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
+
+    if (project == rootProject) {
+        // If this is the root project (e.g. Jitpack), specify a version
+        implementation 'com.facebook.react:react-native:0.60.0-rc.1'
+    } else {
+        //noinspection GradleDynamicVersion
+        compileOnly "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
+    }
+
     implementation('com.google.android.exoplayer:exoplayer:2.9.3') {
         exclude group: 'com.android.support'
     }
