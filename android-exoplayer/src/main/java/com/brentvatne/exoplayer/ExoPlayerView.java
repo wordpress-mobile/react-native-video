@@ -2,15 +2,15 @@ package com.brentvatne.exoplayer;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.core.content.ContextCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
