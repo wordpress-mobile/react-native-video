@@ -4,6 +4,18 @@ def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        //noinspection GradleDependency
+        classpath rootProject.ext.has('gradleBuildTools') ? rootProject.ext.get('gradleBuildTools') : 'com.android.tools.build:gradle:3.3.1'
+    }
+}
+
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', 28)
     buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
