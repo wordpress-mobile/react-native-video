@@ -11,11 +11,12 @@ buildscript {
     dependencies {
         //noinspection GradleDependency
         classpath rootProject.ext.has('gradleBuildTools') ? rootProject.ext.get('gradleBuildTools') : 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', 28)
