@@ -41,8 +41,14 @@ repositories {
     mavenLocal()
     google()
     jcenter()
-    maven {
-        url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
+    if (project == rootProject) {
+        maven {
+            url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
+        }
+    } else {
+        // When building as a dep, the RN's maven repo is locally in the node_modules folder
+        def nodeModulesPath = "${project.buildDir}/../../node_modules/"
+        maven { url "${nodeModulesPath}/react-native/android" }
     }
 }
 
