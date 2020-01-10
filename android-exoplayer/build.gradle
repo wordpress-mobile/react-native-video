@@ -48,7 +48,7 @@ repositories {
 
 dependencies {
 
-    implementation 'com.facebook.react:react-native:0.60.0-rc.1'
+    implementation 'com.facebook.react:react-native:0.60.0-patched'
 
     implementation('com.google.android.exoplayer:exoplayer:2.9.3') {
         exclude group: 'com.android.support'
