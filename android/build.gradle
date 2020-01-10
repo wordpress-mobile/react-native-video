@@ -37,25 +37,13 @@ repositories {
     mavenLocal()
     google()
     jcenter()
-    if (project == rootProject) {
-        maven {
-            url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
-        }
-    } else {
-        // When building as a dep, the RN's maven repo is locally in the node_modules folder
-        def nodeModulesPath = "${project.buildDir}/../../node_modules/"
-        maven { url "${nodeModulesPath}/react-native/android" }
+    maven {
+        url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
     }
 }
 
 dependencies {
-    if (project == rootProject) {
-        // If this is the root project (e.g. Jitpack), specify a version
-        implementation 'com.facebook.react:react-native:0.60.0-rc.1'
-    } else {
-        //noinspection GradleDynamicVersion
-        implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
-    }
+    implementation 'com.facebook.react:react-native:0.60.0-rc.1'
 
     implementation 'com.yqritc:android-scalablevideoview:1.0.4'
 }
