@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.facebook.react:react-native:0.60.0-patched'
+    implementation 'com.facebook.react:react-native:0.61.5'
 
     implementation 'com.yqritc:android-scalablevideoview:1.0.4'
 }
