@@ -1,7 +1,5 @@
-import keyMirror from 'keymirror';
-
-export default keyMirror({
-  contain: null,
-  cover: null,
-  stretch: null,
-});
+export default {
+  contain: "contain",
+  cover: "cover",
+  stretch: "stretch",
+};

@@ -1,7 +1,6 @@
 // @flow
 
 import { RCTEvent, RCTView, type RCTBridge } from "react-native-dom";
-import shaka from "shaka-player";
 
 import resizeModes from "./resizeModes";
 import type { VideoSource } from "./types";
@@ -26,8 +25,6 @@ class RCTVideo extends RCTView {
 
     this.eventDispatcher = bridge.getModuleByName("EventDispatcher");
 
-    shaka.polyfill.installAll();
-
     this.onEnd = this.onEnd.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.onLoadStart = this.onLoadStart.bind(this);
@@ -41,7 +38,6 @@ class RCTVideo extends RCTView {
     this.videoElement.addEventListener("loadstart", this.onLoadStart);
     this.videoElement.addEventListener("pause", this.onPause);
     this.videoElement.addEventListener("play", this.onPlay);
-    this.player = new shaka.Player(this.videoElement);
 
     this.muted = false;
     this.rate = 1.0;
@@ -154,19 +150,9 @@ class RCTVideo extends RCTView {
       uri = URL.createObjectURL(blob);
     }
 
-    if (!shaka.Player.isBrowserSupported()) { // primarily iOS WebKit
-      this.videoElement.setAttribute("src", uri);
-      if (!this._paused) {
-        this.requestPlay();
-      }
-    } else {
-      this.player.load(uri)
-        .then(() => {
-          if (!this._paused) {
-            this.requestPlay();
-          }
-        })
-        .catch(this.onError);
+    this.videoElement.setAttribute("src", uri);
+    if (!this._paused) {
+      this.requestPlay();
     }
   }
 
@@ -182,7 +168,7 @@ class RCTVideo extends RCTView {
   onEnd = () => {
     this.onProgress();
     this.sendEvent("topVideoEnd", null);
-    this.stopProgressTimer();    
+    this.stopProgressTimer();
   }
 
   onError = error => {
